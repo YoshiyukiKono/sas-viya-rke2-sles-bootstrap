@@ -104,7 +104,7 @@ After successful execution, provide the SAS Viya owner with:
 Run the readiness script after the cluster, StorageClass, cert-manager, ingress, and namespace are configured:
 
 ```powershell
-.\scripts-verify-sas-readiness.ps1
+.\scripts\verify-sas-readiness.ps1
 ```
 
 The script writes a timestamped report under `output/`, including cluster state, StorageClass checks, an RWX PVC smoke test, ingress/cert-manager status, and manual follow-up items for the SAS owner.
