@@ -1,15 +1,3 @@
-これはちょうど Research Fabric Lab の Journal に置くような内容ですね。
-
-あなたの場合、単なる「手順書」よりも、
-
-* なぜ Cloud Image を選んだのか
-* Proxmox 9.0.3 の UI で何に迷ったか
-* 実際にどう解決したか
-
-を書いた方が後で自分も助かるし、Qiita的にも価値があります。
-
----
-
 # Journal: Proxmox VE 9.0.3 で SLES 15 SP7 Cloud Image テンプレートを作成する
 
 ## 背景
