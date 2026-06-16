@@ -6,7 +6,7 @@ Windows PowerShell scripts to prepare SLES VMs and bootstrap an RKE2 Kubernetes 
 
 This repository covers the infrastructure side only:
 
-- Proxmox VM preparation notes
+- Proxmox VE 9 Web UI VM image import and template creation notes
 - SLES OS preparation
 - optional NFS server setup
 - RKE2 HA cluster bootstrap
@@ -29,6 +29,16 @@ sas-worker-01   192.168.10.201
 sas-worker-02   192.168.10.202
 sas-worker-03   192.168.10.203
 ```
+
+
+## Proxmox template creation notes
+
+The detailed Web UI procedure used for the SLES 15 SP7 qcow2 image is recorded here:
+
+- `docs/proxmox-sles-cloud-image-template.md`
+- `docs/proxmox-operation-log.md`
+
+This covers enabling `Disk image` and `Import` on `local`, uploading the qcow2 image, creating VM `9007`, importing the image as `scsi1`, changing boot order, completing JeOS Firstboot once, adding CloudInit Drive, cleaning the template, and converting it to a reusable template.
 
 ## Prerequisites on Windows
 
@@ -71,9 +81,16 @@ Set-ExecutionPolicy -Scope Process Bypass
 .\scripts\10-install-cert-manager.ps1
 .\scripts\11-install-ingress-nginx.ps1
 .\scripts\12-create-sas-namespace.ps1
-.\scripts\99-verify-cluster.ps1
 .\scripts\13-verify-sas-readiness.ps1
+.\scripts\99-verify-cluster.ps1
 ```
+
+## Additional planning docs
+
+- `docs/preflight-checklist.md`
+- `docs/dns-loadbalancer-notes.md`
+- `docs/sas-handover-checklist.md`
+- `docs/troubleshooting.md`
 
 ## Handover output
 
@@ -92,19 +109,3 @@ After successful execution, provide the SAS Viya owner with:
 - The default StorageClass uses NFS CSI with `Retain` reclaim policy.
 - The NFS server here is a simple PoC/lab design, not an HA storage design.
 - For production, confirm SAS Viya Kubernetes, CNI, ingress, and storage prerequisites with the SAS owner.
-
-
-## Additional planning documents
-
-- `docs/preflight-checklist.md` - items to confirm before SAS Viya deployment
-- `docs/dns-loadbalancer-notes.md` - DNS, wildcard, and LoadBalancer planning notes
-
-## SAS readiness report
-
-Run the readiness script after the cluster, StorageClass, cert-manager, ingress, and namespace are configured:
-
-```powershell
-.\scripts\verify-sas-readiness.ps1
-```
-
-The script writes a timestamped report under `output/`, including cluster state, StorageClass checks, an RWX PVC smoke test, ingress/cert-manager status, and manual follow-up items for the SAS owner.

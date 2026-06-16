@@ -1,57 +1,33 @@
-# Proxmox Web UI VM creation notes
+# Proxmox Web UI VM Preparation
 
-This document describes the intended manual VM creation phase when Proxmox host shell access is unavailable.
+This repository assumes that SLES VMs already exist and are reachable by SSH from the Windows workstation.
 
-## Goal
+For the concrete Proxmox VE 9 procedure used to import the SLES 15 SP7 qcow2 image and create a reusable VM template, see:
 
-Create SLES 15 SP7 VMs from:
+- [proxmox-sles-cloud-image-template.md](./proxmox-sles-cloud-image-template.md)
 
-```text
-SLES15-SP7-Minimal-VM.x86_64-Cloud-QU4.qcow2
-```
-
-Then use Cloud-Init only for basic VM initialization:
-
-- user
-- SSH key
-- hostname
-- IP address
-- DNS
-
-RKE2 and NFS are handled later by PowerShell scripts.
-
-## Recommended VM list
+High-level flow:
 
 ```text
-nfs-01
-sas-cp-01
-sas-cp-02
-sas-cp-03
-sas-worker-01
-sas-worker-02
-sas-worker-03
+Enable Disk image / Import on local storage
+  -> Upload SLES15-SP7-Minimal-VM.x86_64-Cloud-QU4.qcow2
+  -> Create empty VM 9007
+  -> Import qcow2 as VM hard disk
+  -> Set boot order to imported disk
+  -> Complete JeOS Firstboot once
+  -> Add CloudInit Drive
+  -> Clean cloud-init and machine-id
+  -> Convert VM 9007 to template
+  -> Clone into RKE2/NFS nodes
 ```
 
-## Recommended VM sizing
+After cloning, configure each VM's Cloud-Init settings in the Proxmox UI:
 
-| Role | vCPU | Memory | Disk |
-|---|---:|---:|---:|
-| nfs-01 | 4 | 8 GB | 200 GB+ |
-| control plane | 4 | 16 GB | 100 GB |
-| worker | 16+ | 64 GB+ | 300 GB+ |
+```text
+hostname
+SSH public key
+IP address or DHCP
+DNS / search domain
+```
 
-For SAS Viya, worker memory matters. Confirm final sizing with the SAS owner.
-
-## Cloud-Init values
-
-Set each VM with:
-
-- User: `sles`
-- SSH Public Key: your Windows user's public key
-- IP: static preferred
-- DNS: your environment DNS
-- Search domain: optional
-
-## Notes
-
-If the Proxmox GUI cannot import qcow2 directly, host shell access or an administrator action is needed for `qm importdisk`.
+Once all VMs are reachable via SSH, run the PowerShell scripts from the Windows workstation.
