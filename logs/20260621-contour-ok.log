@@ -1,0 +1,55 @@
+NAME                 STATUS   ROLES                AGE   VERSION          INTERNAL-IP    EXTERNAL-IP   OS-IMAGE                              KERNEL-VERSION               CONTAINER-RUNTIME
+rke2-control-plane   Ready    control-plane,etcd   67m   v1.35.5+rke2r2   10.110.0.191   <none>        SUSE Linux Enterprise Server 15 SP7   6.4.0-150700.53.52-default   containerd://2.2.3-k3s1
+viya-cas             Ready    <none>               56m   v1.35.5+rke2r2   10.110.0.196   <none>        SUSE Linux Enterprise Server 15 SP7   6.4.0-150700.53.52-default   containerd://2.2.3-k3s1
+viya-compute         Ready    <none>               57m   v1.35.5+rke2r2   10.110.0.193   <none>        SUSE Linux Enterprise Server 15 SP7   6.4.0-150700.53.52-default   containerd://2.2.3-k3s1
+viya-control         Ready    <none>               58m   v1.35.5+rke2r2   10.110.0.192   <none>        SUSE Linux Enterprise Server 15 SP7   6.4.0-150700.53.52-default   containerd://2.2.3-k3s1
+viya-default         Ready    <none>               57m   v1.35.5+rke2r2   10.110.0.195   <none>        SUSE Linux Enterprise Server 15 SP7   6.4.0-150700.53.52-default   containerd://2.2.3-k3s1
+viya-stateful        Ready    <none>               56m   v1.35.5+rke2r2   10.110.0.197   <none>        SUSE Linux Enterprise Server 15 SP7   6.4.0-150700.53.52-default   containerd://2.2.3-k3s1
+viya-stateless       Ready    <none>               55m   v1.35.5+rke2r2   10.110.0.198   <none>        SUSE Linux Enterprise Server 15 SP7   6.4.0-150700.53.52-default   containerd://2.2.3-k3s1
+NAMESPACE         NAME                                                    READY   STATUS      RESTARTS       AGE     IP             NODE                 NOMINATED NODE   READINESS GATES
+cert-manager      cert-manager-5957746d66-sx6j8                           1/1     Running     0              15m     10.42.4.3      viya-cas             <none>           <none>
+cert-manager      cert-manager-cainjector-567c6b47ff-d8stm                1/1     Running     0              15m     10.42.3.2      viya-default         <none>           <none>
+cert-manager      cert-manager-webhook-7cc5c588cb-qgsc6                   1/1     Running     0              15m     10.42.6.2      viya-stateful        <none>           <none>
+kube-system       cloud-controller-manager-rke2-control-plane             1/1     Running     2 (31m ago)    67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       etcd-rke2-control-plane                                 1/1     Running     1              67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       helm-install-rke2-canal-cjgwx                           0/1     Completed   0              67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       helm-install-rke2-coredns-d44pm                         0/1     Completed   0              67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       helm-install-rke2-metrics-server-wq6n5                  0/1     Completed   16             67m     10.42.0.9      rke2-control-plane   <none>           <none>
+kube-system       helm-install-rke2-runtimeclasses-sx24c                  0/1     Completed   16             67m     10.42.0.10     rke2-control-plane   <none>           <none>
+kube-system       helm-install-rke2-snapshot-controller-crd-rszqs         0/1     Completed   16             67m     10.42.0.11     rke2-control-plane   <none>           <none>
+kube-system       helm-install-rke2-snapshot-controller-gng8m             0/1     Completed   17             67m     10.42.0.13     rke2-control-plane   <none>           <none>
+kube-system       kube-apiserver-rke2-control-plane                       1/1     Running     1              67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       kube-controller-manager-rke2-control-plane              1/1     Running     2 (31m ago)    67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       kube-proxy-rke2-control-plane                           1/1     Running     0              31m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       kube-proxy-viya-cas                                     1/1     Running     0              29m     10.110.0.196   viya-cas             <none>           <none>
+kube-system       kube-proxy-viya-compute                                 1/1     Running     0              29m     10.110.0.193   viya-compute         <none>           <none>
+kube-system       kube-proxy-viya-control                                 1/1     Running     0              29m     10.110.0.192   viya-control         <none>           <none>
+kube-system       kube-proxy-viya-default                                 1/1     Running     0              29m     10.110.0.195   viya-default         <none>           <none>
+kube-system       kube-proxy-viya-stateful                                1/1     Running     0              29m     10.110.0.197   viya-stateful        <none>           <none>
+kube-system       kube-proxy-viya-stateless                               1/1     Running     0              29m     10.110.0.198   viya-stateless       <none>           <none>
+kube-system       kube-scheduler-rke2-control-plane                       1/1     Running     1 (31m ago)    67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       rke2-canal-bwlfc                                        2/2     Running     2 (29m ago)    57m     10.110.0.193   viya-compute         <none>           <none>
+kube-system       rke2-canal-gkbkl                                        2/2     Running     2 (29m ago)    56m     10.110.0.197   viya-stateful        <none>           <none>
+kube-system       rke2-canal-h7chk                                        2/2     Running     2 (29m ago)    58m     10.110.0.192   viya-control         <none>           <none>
+kube-system       rke2-canal-lvt6d                                        2/2     Running     2 (29m ago)    57m     10.110.0.195   viya-default         <none>           <none>
+kube-system       rke2-canal-p7ptv                                        2/2     Running     2 (31m ago)    67m     10.110.0.191   rke2-control-plane   <none>           <none>
+kube-system       rke2-canal-r95vx                                        2/2     Running     2 (29m ago)    55m     10.110.0.198   viya-stateless       <none>           <none>
+kube-system       rke2-canal-z8rsc                                        2/2     Running     2 (29m ago)    56m     10.110.0.196   viya-cas             <none>           <none>
+kube-system       rke2-coredns-rke2-coredns-69c9c9877c-vtqh2              1/1     Running     14 (31m ago)   67m     10.42.0.14     rke2-control-plane   <none>           <none>
+kube-system       rke2-coredns-rke2-coredns-69c9c9877c-x5kft              1/1     Running     0              29m     10.42.4.2      viya-cas             <none>           <none>
+kube-system       rke2-coredns-rke2-coredns-autoscaler-645c95cdd7-cnrmz   1/1     Running     16 (31m ago)   67m     10.42.0.12     rke2-control-plane   <none>           <none>
+kube-system       rke2-metrics-server-bdc688fb7-pwj27                     1/1     Running     0              30m     10.42.7.6      viya-stateless       <none>           <none>
+kube-system       rke2-snapshot-controller-6d8cd4bbcc-hjg6h               1/1     Running     0              30m     10.42.2.2      viya-compute         <none>           <none>
+nfs-provisioner   nfs-subdir-external-provisioner-8647598ff8-zlrmh        1/1     Running     0              24m     10.42.1.3      viya-control         <none>           <none>
+projectcontour    contour-5888c79999-fxgdt                                1/1     Running     0              6m11s   10.42.1.4      viya-control         <none>           <none>
+projectcontour    contour-5888c79999-wbwx2                                1/1     Running     0              6m11s   10.42.2.3      viya-compute         <none>           <none>
+projectcontour    contour-certgen-v1-33-5-nskdl                           0/1     Completed   0              6m11s   10.42.7.9      viya-stateless       <none>           <none>
+projectcontour    envoy-6v9r2                                             2/2     Running     0              6m11s   10.42.7.10     viya-stateless       <none>           <none>
+projectcontour    envoy-7v7m4                                             2/2     Running     0              6m11s   10.42.1.5      viya-control         <none>           <none>
+projectcontour    envoy-d8l6n                                             2/2     Running     0              6m11s   10.42.0.15     rke2-control-plane   <none>           <none>
+projectcontour    envoy-h7k7c                                             2/2     Running     0              6m11s   10.42.4.4      viya-cas             <none>           <none>
+projectcontour    envoy-t2k9l                                             2/2     Running     0              6m11s   10.42.2.4      viya-compute         <none>           <none>
+projectcontour    envoy-vnb5q                                             2/2     Running     0              6m11s   10.42.3.3      viya-default         <none>           <none>
+projectcontour    envoy-zs7h4                                             2/2     Running     0              6m11s   10.42.6.3      viya-stateful        <none>           <none>
+NAME                 PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+viya-nfs (default)   cluster.local/nfs-subdir-external-provisioner   Delete          Immediate           true                   24m
