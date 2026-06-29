@@ -48,6 +48,10 @@ sudo usermod -aG wheel sas
 id sas
 ```
 
+```bash
+uid=1002(sas) gid=1002(sas) groups=1002(sas),497(wheel)
+```
+
 ---
 
 ## SSH 鍵認証
